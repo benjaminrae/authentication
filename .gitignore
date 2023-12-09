@@ -24,3 +24,4 @@
 # ...even if they are in subdirectories
 !*/
 
+!.env.example

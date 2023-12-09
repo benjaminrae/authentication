@@ -3,6 +3,7 @@ package database
 import (
 	"log"
 
+	env "github.com/benjaminrae/authentication/internal/environment"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -10,7 +11,8 @@ import (
 var DB *gorm.DB
 
 func Init() {
-	db, err := gorm.Open(postgres.Open("postgres://postgres:postgres@localhost:5432/postgres"), &gorm.Config{})
+	dsn := env.Config.Dsn
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		log.Fatal(err)
