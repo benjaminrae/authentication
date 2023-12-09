@@ -3,6 +3,7 @@ package database
 import (
 	"log"
 
+	"github.com/benjaminrae/authentication/internal/database/models"
 	env "github.com/benjaminrae/authentication/internal/environment"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -19,4 +20,9 @@ func Init() {
 	}
 
 	DB = db
+	Migrate()
+}
+
+func Migrate() {
+	DB.AutoMigrate(&models.Tenant{})
 }
